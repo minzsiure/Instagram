@@ -7,9 +7,13 @@
 
 #import "ComposeViewController.h"
 #import <Parse/Parse.h>
+#import "Post.h"
+
 
 @interface ComposeViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *composePhoto;
+@property (weak, nonatomic) IBOutlet UITextField *composeCaption;
+@property (strong, nonatomic) UIImage *resizedImage;
 
 @end
 
@@ -44,18 +48,53 @@
     // Get the image captured by the UIImagePickerController
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+    
+    //call resize
+    self.resizedImage = [self resizeImage:editedImage withSize:CGSizeMake(300, 300)];
 
     // Do something with the images (based on your use case)
-    [self.composePhoto setImage:editedImage];
+    [self.composePhoto setImage:self.resizedImage];
     
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+// resize a UIImage
+- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
+    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    
+    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
+    resizeImageView.image = image;
+    
+    UIGraphicsBeginImageContext(size);
+    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
 
 - (IBAction)onTapCancel:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
 }
+
+- (IBAction)onTapShare:(id)sender {
+    //send post to server
+    
+    [Post postUserImage:self.resizedImage withCaption:self.composeCaption.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded) {
+            self.composeCaption.text = @"";
+            NSLog(@"The message was saved!");
+        } else {
+            NSLog(@"Problem saving message: %@", error.localizedDescription);
+        }
+    }];
+    
+    
+    //dismiss
+    [self dismissViewControllerAnimated:true completion:nil];
+}
+
 
 /*
 #pragma mark - Navigation

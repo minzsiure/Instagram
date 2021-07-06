@@ -7,8 +7,11 @@
 
 #import "HomeViewController.h"
 #import <Parse/Parse.h>
+#import "HomeCell.h"
+#import "Post.h"
 
-@interface HomeViewController ()
+@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *postTableView;
 
 @end
 
@@ -17,6 +20,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.postTableView.delegate = self;
+    self.postTableView.dataSource = self;
+    
 }
 
 - (IBAction)logout:(id)sender {
@@ -25,6 +31,7 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
 }
+
 
 
 
@@ -37,5 +44,21 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    HomeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeCell"];
+    
+    //PFObject *message = self.messages[indexPath.row];
+    return cell;
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+
+
+
+
 
 @end
