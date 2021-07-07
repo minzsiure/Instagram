@@ -10,6 +10,7 @@
 #import "HomeCell.h"
 #import "Post.h"
 #import "UIImageView+AFNetworking.h"
+#import <DateTools.h>
 
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *postTableView;
@@ -89,10 +90,27 @@
     
     
     Post *post = self.arrayofPosts[indexPath.row];
-    NSLog(@"%@", post);
+    
     cell.homeLabel.text = post[@"caption"];
+
+    
+    //date formatter
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    // Configure the input format to parse the date string
+    formatter.dateFormat = @"EEE MMM  d HH:mm:ss yyyy";
+    NSDate *date = post.createdAt;
+    
+    // Configure output format
+    formatter.dateStyle = NSDateFormatterShortStyle;
+    formatter.timeStyle = NSDateFormatterShortStyle;
+    //NSString *fullDate = [formatter stringFromDate:date]; full date
+    
+    // Convert Date to String
+    cell.dateLabel.text = [date.shortTimeAgoSinceNow stringByAppendingString:@" ago"];
     
     
+    //
     NSString *userID = post[@"userID"];
     if (userID != nil) {
         // User found! update username label with username
@@ -106,6 +124,7 @@
     NSURL *imageURL = [NSURL URLWithString:image.url];
     cell.homeImage.image = nil;
     [cell.homeImage setImageWithURL:imageURL];
+    
 
     return cell;
 }
