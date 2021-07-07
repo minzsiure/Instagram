@@ -36,11 +36,11 @@
     // Configure output format
     formatter.dateStyle = NSDateFormatterShortStyle;
     formatter.timeStyle = NSDateFormatterShortStyle;
-    //NSString *fullDate = [formatter stringFromDate:date]; full date
+    NSString *fullDate = [formatter stringFromDate:date];
 
     // Convert Date to String
-    self.dateLabel.text = [date.shortTimeAgoSinceNow stringByAppendingString:@" ago"];
-
+    //self.dateLabel.text = [date.shortTimeAgoSinceNow stringByAppendingString:@" ago"];
+    self.dateLabel.text = fullDate;
 
     //
     NSString *userID = self.post[@"userID"];
