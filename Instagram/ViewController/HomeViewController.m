@@ -11,6 +11,7 @@
 #import "Post.h"
 #import "UIImageView+AFNetworking.h"
 #import <DateTools.h>
+#import "LoginViewController.h"
 
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *postTableView;
@@ -49,7 +50,14 @@
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         // PFUser.current() will now be nil
         [self dismissViewControllerAnimated:YES completion:nil];
+        
+        //jump to login view
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        [[UIApplication sharedApplication].keyWindow setRootViewController: loginViewController];
+        
     }];
+    
 }
 
 - (void)onTimer {
