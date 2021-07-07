@@ -86,6 +86,7 @@
         if (succeeded) {
             self.composeCaption.text = @"";
             NSLog(@"The message was saved!");
+            
         } else {
             NSLog(@"Problem saving message: %@", error.localizedDescription);
         }

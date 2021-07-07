@@ -87,9 +87,21 @@
     HomeCell *cell = [self.postTableView dequeueReusableCellWithIdentifier:@"HomeCell"];
     
     
+    
     Post *post = self.arrayofPosts[indexPath.row];
-    NSLog(@"%@", post[@"image"]);
+    NSLog(@"%@", post);
     cell.homeLabel.text = post[@"caption"];
+    
+    
+    NSString *userID = post[@"userID"];
+    if (userID != nil) {
+        // User found! update username label with username
+        cell.usernameLabel.text = userID;
+    } else {
+        // No user found, set default username
+        cell.usernameLabel.text = @"🤖";
+    }
+    
     PFFileObject *image = post[@"image"];
     NSURL *imageURL = [NSURL URLWithString:image.url];
     cell.homeImage.image = nil;
