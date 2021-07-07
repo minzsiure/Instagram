@@ -12,6 +12,7 @@
 #import "UIImageView+AFNetworking.h"
 #import <DateTools.h>
 #import "LoginViewController.h"
+#import "DetailViewController.h"
 
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *postTableView;
@@ -73,6 +74,7 @@
         if (posts != nil) {
             // do something with the array of object returned by the call
             self.arrayofPosts = posts;
+            NSLog(@"%@",self.arrayofPosts[0][@"createdAt"]);
             [self.postTableView reloadData];
         } else {
             NSLog(@"%@", error.localizedDescription);
@@ -82,15 +84,22 @@
 
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    UITableViewCell *tappedCell = sender;
+    NSIndexPath *indexPath = [self.postTableView indexPathForCell:tappedCell];
+    Post *posts = self.arrayofPosts[indexPath.row];
+    
+    DetailViewController *detailViewController = [segue destinationViewController];
+    //pass the cell that's tapped
+    detailViewController.post = posts;
 }
-*/
+
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     HomeCell *cell = [self.postTableView dequeueReusableCellWithIdentifier:@"HomeCell"];
@@ -98,6 +107,7 @@
     
     
     Post *post = self.arrayofPosts[indexPath.row];
+    NSLog(@"%@", post);
     
     cell.homeLabel.text = post[@"caption"];
 
