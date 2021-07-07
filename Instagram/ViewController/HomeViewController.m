@@ -74,7 +74,6 @@
         if (posts != nil) {
             // do something with the array of object returned by the call
             self.arrayofPosts = posts;
-            NSLog(@"%@",self.arrayofPosts[0][@"createdAt"]);
             [self.postTableView reloadData];
         } else {
             NSLog(@"%@", error.localizedDescription);
@@ -91,13 +90,15 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    UITableViewCell *tappedCell = sender;
-    NSIndexPath *indexPath = [self.postTableView indexPathForCell:tappedCell];
-    Post *posts = self.arrayofPosts[indexPath.row];
+    if ([segue.identifier isEqual:@"detailSegue"]){
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.postTableView indexPathForCell:tappedCell];
+        Post *posts = self.arrayofPosts[indexPath.row];
     
-    DetailViewController *detailViewController = [segue destinationViewController];
+        DetailViewController *detailViewController = [segue destinationViewController];
     //pass the cell that's tapped
-    detailViewController.post = posts;
+        detailViewController.post = posts;
+    }
 }
 
 

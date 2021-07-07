@@ -1,32 +1,36 @@
 //
-//  ComposeViewController.m
+//  ProfileViewController.m
 //  Instagram
 //
-//  Created by Eva Xie on 7/6/21.
+//  Created by Eva Xie on 7/7/21.
 //
 
-#import "ComposeViewController.h"
-#import <Parse/Parse.h>
+#import "ProfileViewController.h"
 #import "Post.h"
+#import "UIImageView+AFNetworking.h"
 
-
-
-@interface ComposeViewController ()
-@property (weak, nonatomic) IBOutlet UIImageView *composePhoto;
-@property (weak, nonatomic) IBOutlet UITextField *composeCaption;
+@interface ProfileViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *profileImage;
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (strong, nonatomic) UIImage *resizedImage;
+
 
 @end
 
-@implementation ComposeViewController
+@implementation ProfileViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    PFUser *user = [PFUser currentUser];
     
 }
 
 // Implement the delegate method
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    //get info from current user
+    PFUser *user = [PFUser currentUser];
+    
     
     // Get the image captured by the UIImagePickerController
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
@@ -34,9 +38,25 @@
     
     //call resize
     self.resizedImage = [self resizeImage:editedImage withSize:CGSizeMake(300, 300)];
+    
+    self.profileImage.image = self.resizedImage;
+    if (self.profileImage.image != nil) {
+        NSData *data = UIImagePNGRepresentation(self.profileImage.image);
+        PFFileObject *photo = [PFFileObject fileObjectWithName:@"image.png" data:data];
+        user[@"profilePic"] = photo;
+    }
+    [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded) {
+            NSLog(@"it worked!");
+        }
+    }];
+//    user[@"profilePic"] = self.resizedImage;
 
     // Do something with the images (based on your use case)
-    [self.composePhoto setImage:self.resizedImage];
+//    PFFileObject *profilePic = user[@"profilePic"];
+//    NSURL *profilePicURL = [NSURL URLWithString:profilePic.url];
+//    [user.[@"profilePic"] setImage:self.resizedImage];
+//    [self.profileImage setImage: user.profilePic];
     
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -57,31 +77,8 @@
     return newImage;
 }
 
-- (IBAction)onTapCancel:(id)sender {
-    [self dismissViewControllerAnimated:true completion:nil];
-}
-
-- (IBAction)onTapShare:(id)sender {
-    //send post to server
-    
-    [Post postUserImage:self.resizedImage withCaption:self.composeCaption.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-        if (succeeded) {
-            self.composeCaption.text = @"";
-            NSLog(@"The message was saved!");
-            
-        } else {
-            NSLog(@"Problem saving message: %@", error.localizedDescription);
-        }
-    }];
-    
-    
-    //dismiss
-    [self dismissViewControllerAnimated:true completion:nil];
-}
-
-- (IBAction)onTapSelectPhoto:(id)sender {
-    // Do any additional setup after loading the view.
-    
+//once on tap, use will be able to select profile pic
+- (IBAction)onTapEditProfilePic:(id)sender {
     //Instantiate a UIImagePickerController
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
@@ -101,7 +98,6 @@
     [self presentViewController:imagePickerVC animated:YES completion:nil];
 }
 
-
 /*
 #pragma mark - Navigation
 
@@ -111,5 +107,14 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)viewDidAppear:(BOOL)animated {
+    PFUser *user = [PFUser currentUser];
+    PFFileObject *profilePic = user[@"profilePic"];
+    NSURL *profilePicURL = [NSURL URLWithString:profilePic.url];
+    [self.profileImage setImageWithURL:profilePicURL];
+    
+    self.userNameLabel.text = user[@"username"];
+}
 
 @end

@@ -174,7 +174,7 @@
                                             <outlet property="homeImage" destination="cDy-aE-lzf" id="Ylw-FJ-DVA"/>
                                             <outlet property="homeLabel" destination="1uj-a6-lbN" id="Vax-P5-YEL"/>
                                             <outlet property="usernameLabel" destination="5ni-te-4CN" id="lI8-7c-ink"/>
-                                            <segue destination="Bzb-5w-ybV" kind="show" id="gLC-u2-YLK"/>
+                                            <segue destination="Bzb-5w-ybV" kind="show" identifier="detailSegue" id="gLC-u2-YLK"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -318,21 +318,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="camera.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="2JT-CC-S5i">
-                                <rect key="frame" x="20" y="75" width="125" height="125"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="2JT-CC-S5i">
+                                <rect key="frame" x="20" y="76.5" width="125" height="125"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" systemColor="secondarySystemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="125" id="5rm-ql-OuQ"/>
+                                    <constraint firstAttribute="height" constant="126" id="mOk-CD-WCF"/>
+                                </constraints>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Write a caption..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JQJ-Fr-wtm">
-                                <rect key="frame" x="159" y="75" width="235" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Write a caption..." textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="JQJ-Fr-wtm">
+                                <rect key="frame" x="160" y="76" width="239" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mIM-Sa-cEU">
+                                <rect key="frame" x="46.5" y="210" width="72" height="30"/>
+                                <state key="normal" title="Add Photo"/>
+                                <connections>
+                                    <action selector="onTapSelectPhoto:" destination="QgI-ZB-3Eb" eventType="touchUpInside" id="jQx-Xv-ThM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7p2-gz-xjy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="mIM-Sa-cEU" firstAttribute="leading" secondItem="7p2-gz-xjy" secondAttribute="leading" constant="46.5" id="9sT-sZ-txs"/>
+                            <constraint firstItem="2JT-CC-S5i" firstAttribute="leading" secondItem="7p2-gz-xjy" secondAttribute="leading" constant="20" id="NDT-eb-OMg"/>
+                            <constraint firstItem="JQJ-Fr-wtm" firstAttribute="top" secondItem="7p2-gz-xjy" secondAttribute="top" constant="20" id="Peo-jj-Vyc"/>
+                            <constraint firstItem="7p2-gz-xjy" firstAttribute="trailing" secondItem="JQJ-Fr-wtm" secondAttribute="trailing" constant="15" id="T2V-P2-8Z2"/>
+                            <constraint firstItem="JQJ-Fr-wtm" firstAttribute="leading" secondItem="2JT-CC-S5i" secondAttribute="trailing" constant="15" id="X9b-h9-gqC"/>
+                            <constraint firstItem="mIM-Sa-cEU" firstAttribute="top" secondItem="2JT-CC-S5i" secondAttribute="bottom" constant="8" symbolic="YES" id="Yzd-LM-3X0"/>
+                            <constraint firstItem="2JT-CC-S5i" firstAttribute="top" secondItem="7p2-gz-xjy" secondAttribute="top" constant="20" id="fDN-Zb-c4x"/>
+                            <constraint firstItem="7p2-gz-xjy" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="JQJ-Fr-wtm" secondAttribute="bottom" constant="699" id="xAC-gN-g3F"/>
+                            <constraint firstItem="mIM-Sa-cEU" firstAttribute="centerX" secondItem="2JT-CC-S5i" secondAttribute="centerX" id="xrb-h5-YzV"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1R2-d6-pPu">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="b8A-8M-bkS">
@@ -368,18 +388,44 @@
         <!--Profile-->
         <scene sceneID="hIp-qK-3QA">
             <objects>
-                <viewController id="FKy-aE-x2z" sceneMemberID="viewController">
+                <viewController id="FKy-aE-x2z" customClass="ProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bwa-Xt-O2e">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iZv-cS-HgX">
+                                <rect key="frame" x="140" y="111" width="135" height="135"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGray4Color"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28I-MX-wC9">
+                                <rect key="frame" x="144" y="292" width="127" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Edit Profile Picture"/>
+                                <connections>
+                                    <action selector="onTapEditProfilePic:" destination="FKy-aE-x2z" eventType="touchUpInside" id="5Y0-sl-viZ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="szA-bR-M3c">
+                                <rect key="frame" x="150" y="254" width="114" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Tb5-DW-0wd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="z6h-Yx-kOG"/>
+                    <connections>
+                        <outlet property="profileImage" destination="iZv-cS-HgX" id="Ylk-qF-VyN"/>
+                        <outlet property="userNameLabel" destination="szA-bR-M3c" id="gMI-We-ndT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UP1-Xz-LSk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4550.7246376811599" y="10.714285714285714"/>
+            <point key="canvasLocation" x="3966.666666666667" y="10.714285714285714"/>
         </scene>
         <!--Home-->
         <scene sceneID="TdH-xD-6F1">
@@ -435,7 +481,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fju-Me-y4f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3640.579710144928" y="10.714285714285714"/>
+            <point key="canvasLocation" x="3057" y="11"/>
         </scene>
     </scenes>
     <resources>
@@ -450,6 +496,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
