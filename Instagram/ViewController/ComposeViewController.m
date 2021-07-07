@@ -10,6 +10,7 @@
 #import "Post.h"
 
 
+
 @interface ComposeViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *composePhoto;
 @property (weak, nonatomic) IBOutlet UITextField *composeCaption;
