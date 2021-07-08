@@ -420,22 +420,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iZv-cS-HgX">
-                                <rect key="frame" x="140" y="111" width="135" height="135"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iZv-cS-HgX">
+                                <rect key="frame" x="139.5" y="113" width="135" height="135"/>
                                 <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="135" id="7Uu-KZ-e7k"/>
+                                    <constraint firstAttribute="width" constant="135" id="iYi-5m-sxH"/>
+                                </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28I-MX-wC9">
-                                <rect key="frame" x="144" y="292" width="127" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28I-MX-wC9">
+                                <rect key="frame" x="143.5" y="294" width="127" height="30"/>
                                 <state key="normal" title="Edit Profile Picture"/>
                                 <connections>
                                     <action selector="onTapEditProfilePic:" destination="FKy-aE-x2z" eventType="touchUpInside" id="5Y0-sl-viZ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="szA-bR-M3c">
-                                <rect key="frame" x="150" y="254" width="114" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="szA-bR-M3c">
+                                <rect key="frame" x="150" y="256" width="114" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -443,6 +444,14 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Tb5-DW-0wd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="iZv-cS-HgX" firstAttribute="centerX" secondItem="Bwa-Xt-O2e" secondAttribute="centerX" id="4j4-Vd-Rq1"/>
+                            <constraint firstItem="szA-bR-M3c" firstAttribute="top" secondItem="iZv-cS-HgX" secondAttribute="bottom" constant="8" id="4us-hN-g4V"/>
+                            <constraint firstItem="szA-bR-M3c" firstAttribute="centerX" secondItem="Bwa-Xt-O2e" secondAttribute="centerX" id="DxX-vd-Td5"/>
+                            <constraint firstItem="28I-MX-wC9" firstAttribute="top" secondItem="szA-bR-M3c" secondAttribute="bottom" constant="8" id="SpD-FB-ha9"/>
+                            <constraint firstItem="iZv-cS-HgX" firstAttribute="top" secondItem="Tb5-DW-0wd" secondAttribute="top" constant="25" id="btv-bY-08a"/>
+                            <constraint firstItem="28I-MX-wC9" firstAttribute="centerX" secondItem="Bwa-Xt-O2e" secondAttribute="centerX" id="wmr-Hz-aPd"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="z6h-Yx-kOG"/>
                     <connections>
