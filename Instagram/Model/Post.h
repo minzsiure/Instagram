@@ -17,6 +17,7 @@
 
 @property (nonatomic, strong) NSString *caption;
 @property (nonatomic, strong) PFFileObject *image;
+@property (nonatomic, strong) PFFileObject *profilePic;
 @property (nonatomic, strong) NSNumber *likeCount;
 @property (nonatomic, strong) NSNumber *commentCount;
 

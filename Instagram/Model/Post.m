@@ -17,6 +17,7 @@
 @dynamic likeCount;
 @dynamic commentCount;
 @dynamic date;
+@dynamic profilePic;
 
 + (nonnull NSString *)parseClassName {
     return @"Post";
@@ -31,6 +32,7 @@
     newPost.caption = caption;
     newPost.likeCount = @(0);
     newPost.commentCount = @(0);
+    //newPost.profilePic = [PFUser currentUser].profilePic;
     
     [newPost saveInBackgroundWithBlock: completion];
 }

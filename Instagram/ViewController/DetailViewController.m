@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *postImageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 
 @end
 
@@ -41,6 +42,13 @@
     // Convert Date to String
     //self.dateLabel.text = [date.shortTimeAgoSinceNow stringByAppendingString:@" ago"];
     self.dateLabel.text = fullDate;
+    
+    PFUser *user = self.post[@"author"];
+    PFFileObject *profilePic = user[@"profilePic"];
+    NSURL *profilePicURL = [NSURL URLWithString:profilePic.url];
+    [self.profileImage setImageWithURL:profilePicURL];
+    self.profileImage.layer.cornerRadius = 25;
+    self.profileImage.clipsToBounds = YES;
 
     //
     NSString *userID = self.post[@"userID"];

@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *postTableView;
 @property (strong, nonatomic) NSArray *arrayofPosts;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 
 
 @end
@@ -65,7 +66,7 @@
     // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
 //    [query whereKey:@"likesCount" greaterThan:@100];
-    //[query includeKey:@"user"];
+    [query includeKey:@"author"];
     [query orderByDescending:@"createdAt"];
     query.limit = 20;
 
@@ -111,6 +112,12 @@
     NSLog(@"%@", post);
     
     cell.homeLabel.text = post[@"caption"];
+    
+    //fix this to destination cell
+    PFUser *user = post[@"author"];
+    PFFileObject *profilePic = user[@"profilePic"];
+    NSURL *profilePicURL = [NSURL URLWithString:profilePic.url];
+    [cell.profileImage setImageWithURL:profilePicURL];
 
     
     //date formatter
@@ -143,6 +150,8 @@
     NSURL *imageURL = [NSURL URLWithString:image.url];
     cell.homeImage.image = nil;
     [cell.homeImage setImageWithURL:imageURL];
+    cell.profileImage.layer.cornerRadius = 25;
+    cell.profileImage.clipsToBounds = YES;
     
 
     return cell;
