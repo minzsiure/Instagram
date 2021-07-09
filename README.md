@@ -41,7 +41,13 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
+###full walk through
+
 <img src='https://github.com/minzsiure/Instagram/blob/main/instaDisplay.gif?raw=true' title='Video Walkthrough' width='400' alt='Video Walkthrough' />
+
+### Launch Screen, home icon, and user login persistance.
+<img src='https://github.com/minzsiure/Instagram/blob/main/demo2.gif?raw=true' title='Video Walkthrough' width='400' alt='Video Walkthrough' />
+
 
 GIF created with [Kap](https://getkap.co/).
 
