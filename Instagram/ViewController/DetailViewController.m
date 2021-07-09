@@ -23,11 +23,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     self.captionLabel.text = self.post[@"caption"];
 
-    
-    //date formatter
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 
     // Configure the input format to parse the date string
@@ -39,8 +36,6 @@
     formatter.timeStyle = NSDateFormatterShortStyle;
     NSString *fullDate = [formatter stringFromDate:date];
 
-    // Convert Date to String
-    //self.dateLabel.text = [date.shortTimeAgoSinceNow stringByAppendingString:@" ago"];
     self.dateLabel.text = fullDate;
     
     PFUser *user = self.post[@"author"];
@@ -50,13 +45,11 @@
     self.profileImage.layer.cornerRadius = 25;
     self.profileImage.clipsToBounds = YES;
 
-    //
+    
     NSString *userID = self.post[@"userID"];
     if (userID != nil) {
-        // User found! update username label with username
         self.usernameLabel.text = userID;
     } else {
-        // No user found, set default username
         self.usernameLabel.text = @"🤖";
     }
     

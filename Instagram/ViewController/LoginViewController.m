@@ -18,7 +18,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 - (IBAction)Login:(id)sender {
     NSString *username = self.usernameTextField.text;
@@ -37,22 +36,16 @@
 
 - (IBAction)SignUp:(id)sender {
     if (![self.usernameTextField.text isEqual:@""] && ![self.passwordTextField.text isEqual:@""]) {
-        // initialize a user object
         PFUser *newUser = [PFUser user];
 
-        // set user properties
         newUser.username = self.usernameTextField.text;
-        //    newUser.email = self.emailField.text;
         newUser.password = self.passwordTextField.text;
 
-        // call sign up function on the object
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
             if (error != nil) {
                 NSLog(@"Error: %@", error.localizedDescription);
             } else {
                 NSLog(@"User registered successfully");
-                
-                // manually segue to logged in view
             }
         }];
     }
@@ -64,17 +57,15 @@
 - (void)displayAlert {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Empty fields" message:@"Username and password fields must not be empty" preferredStyle:(UIAlertControllerStyleAlert)];
 
-    // create an OK action
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
                                                        style:UIAlertActionStyleDefault
                                                      handler:^(UIAlertAction * _Nonnull action) {
-                                                             // handle response here.
+                                                             
                                                      }];
-    // add the OK action to the alert controller
     [alert addAction:okAction];
     
     [self presentViewController:alert animated:YES completion:^{
-        // optional code for what happens after the alert controller has finished presenting
+    
     }];
 }
 

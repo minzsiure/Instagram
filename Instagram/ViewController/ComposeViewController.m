@@ -25,24 +25,20 @@
     
 }
 
-// Implement the delegate method
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
-    // Get the image captured by the UIImagePickerController
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     
     //call resize
     self.resizedImage = [self resizeImage:editedImage withSize:CGSizeMake(300, 300)];
 
-    // Do something with the images (based on your use case)
     [self.composePhoto setImage:self.resizedImage];
-    
-    // Dismiss UIImagePickerController to go back to your original view controller
+
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-// resize a UIImage
+
 - (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
     UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     
@@ -62,8 +58,6 @@
 }
 
 - (IBAction)onTapShare:(id)sender {
-    //send post to server
-    
     [Post postUserImage:self.resizedImage withCaption:self.composeCaption.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             self.composeCaption.text = @"";
@@ -74,20 +68,15 @@
         }
     }];
     
-    
-    //dismiss
+
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
 - (IBAction)onTapSelectPhoto:(id)sender {
-    // Do any additional setup after loading the view.
-    
-    //Instantiate a UIImagePickerController
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
     imagePickerVC.allowsEditing = YES;
 
-    // The Xcode simulator does not support taking pictures, so let's first check that the camera is indeed supported on the device before trying to present it.
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
     }

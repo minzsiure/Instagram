@@ -11,13 +11,17 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    UITapGestureRecognizer *profileTap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                              action:@selector(didTapProfile:)];
+    [self.profileImage setUserInteractionEnabled:YES];
+    [self.profileImage addGestureRecognizer:profileTap];
+ 
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
+
 
 @end

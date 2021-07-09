@@ -32,7 +32,6 @@
     newPost.caption = caption;
     newPost.likeCount = @(0);
     newPost.commentCount = @(0);
-    //newPost.profilePic = [PFUser currentUser].profilePic;
     
     [newPost saveInBackgroundWithBlock: completion];
 }

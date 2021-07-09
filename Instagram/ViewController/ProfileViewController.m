@@ -21,8 +21,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    PFUser *user = [PFUser currentUser];
     
 }
 
@@ -36,7 +34,6 @@
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     
-    //call resize
     self.resizedImage = [self resizeImage:editedImage withSize:CGSizeMake(300, 300)];
     
     self.profileImage.image = self.resizedImage;
@@ -50,19 +47,9 @@
             NSLog(@"it worked!");
         }
     }];
-//    user[@"profilePic"] = self.resizedImage;
-
-    // Do something with the images (based on your use case)
-//    PFFileObject *profilePic = user[@"profilePic"];
-//    NSURL *profilePicURL = [NSURL URLWithString:profilePic.url];
-//    [user.[@"profilePic"] setImage:self.resizedImage];
-//    [self.profileImage setImage: user.profilePic];
-    
-    // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-// resize a UIImage
 - (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
     UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     
@@ -77,14 +64,12 @@
     return newImage;
 }
 
-//once on tap, use will be able to select profile pic
+//once on tap, user will be able to select profile pic
 - (IBAction)onTapEditProfilePic:(id)sender {
-    //Instantiate a UIImagePickerController
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
     imagePickerVC.allowsEditing = YES;
 
-    // The Xcode simulator does not support taking pictures, so let's first check that the camera is indeed supported on the device before trying to present it.
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
     }

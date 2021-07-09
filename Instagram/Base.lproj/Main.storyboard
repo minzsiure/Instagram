@@ -127,8 +127,9 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3im-Ty-h3J">
+                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3im-Ty-h3J">
                                                     <rect key="frame" x="35" y="11" width="50" height="50"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="Eto-tB-eKD"/>
                                                         <constraint firstAttribute="height" constant="50" id="Wdb-DV-Qq2"/>
@@ -158,8 +159,9 @@
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ni-te-4CN">
+                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ni-te-4CN">
                                                     <rect key="frame" x="93" y="22" width="101" height="28"/>
+                                                    <gestureRecognizers/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -335,7 +337,49 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dem-q0-k2W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="298.55072463768118" y="717.85714285714278"/>
+            <point key="canvasLocation" x="299" y="730"/>
+        </scene>
+        <!--Other User View Controller-->
+        <scene sceneID="Ggx-2g-Lwu">
+            <objects>
+                <viewController storyboardIdentifier="OtherUserViewController" id="jhj-wK-6xJ" customClass="OtherUserViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4Rb-ZU-cF5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C8p-Kt-VlX">
+                                <rect key="frame" x="139.5" y="69" width="135" height="135"/>
+                                <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="135" id="4AM-KI-K67"/>
+                                    <constraint firstAttribute="height" constant="135" id="GCP-FT-tTV"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mP9-X4-oPS">
+                                <rect key="frame" x="150" y="212" width="114" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="dlW-j5-a7Y"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="mP9-X4-oPS" firstAttribute="top" secondItem="C8p-Kt-VlX" secondAttribute="bottom" constant="8" id="7Qh-3W-gil"/>
+                            <constraint firstItem="mP9-X4-oPS" firstAttribute="centerX" secondItem="4Rb-ZU-cF5" secondAttribute="centerX" id="k4X-c5-TTj"/>
+                            <constraint firstItem="C8p-Kt-VlX" firstAttribute="top" secondItem="dlW-j5-a7Y" secondAttribute="top" constant="25" id="k6f-Zg-9cx"/>
+                            <constraint firstItem="C8p-Kt-VlX" firstAttribute="centerX" secondItem="4Rb-ZU-cF5" secondAttribute="centerX" id="yLu-oH-INZ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="F6q-4C-ta6"/>
+                    <connections>
+                        <outlet property="profileImage" destination="C8p-Kt-VlX" id="Ejf-6W-7Go"/>
+                        <outlet property="usernameLabel" destination="mP9-X4-oPS" id="PYi-EA-M0I"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9QJ-5V-Vt8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1223" y="730"/>
         </scene>
         <!--Compose View Controller-->
         <scene sceneID="Q7H-wy-0Wa">
