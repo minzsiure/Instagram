@@ -41,7 +41,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-### full walk through
+### Full walk through
 
 <img src='https://github.com/minzsiure/Instagram/blob/main/instaDisplay.gif?raw=true' title='Video Walkthrough' width='400' alt='Video Walkthrough' />
 
