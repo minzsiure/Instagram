@@ -26,7 +26,6 @@
 
 // Implement the delegate method
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    //get info from current user
     PFUser *user = [PFUser currentUser];
     
     

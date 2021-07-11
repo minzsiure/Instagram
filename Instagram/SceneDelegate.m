@@ -23,7 +23,6 @@
     if (user != nil) {
         NSLog(@"Welcome back %@ 😀", user.username);
 
-        // TODO: Load Chat view controller and set as root view controller
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewController *homeNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"TabBarController"];
         self.window.rootViewController = homeNavigationController;
